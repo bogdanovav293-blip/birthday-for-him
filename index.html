@@ -27,56 +27,32 @@
     .fade { opacity: 0; transform: translateY(30px); transition: opacity 1s ease, transform 1s ease; }
     .fade.visible { opacity: 1; transform: translateY(0); }
     .soft { color: var(--muted); font-size: 0.9rem; margin-top: 1rem; }
-    #candleWrap {
-      position: relative;
-      width: 80px;
-      height: 260px;
-      margin: 2rem auto;
-    }
+    #candleWrap { position: relative; width: 80px; height: 260px; margin: 2rem auto; }
     #glow {
-      position: absolute;
-      bottom: 215px;
-      left: -60px;
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,179,71,0.35) 0%, transparent 65%);
-      transition: opacity 1.2s;
-      pointer-events: none;
+      position: absolute; bottom: 215px; left: -60px; width: 200px; height: 200px;
+      border-radius: 50%; background: radial-gradient(circle, rgba(255,179,71,0.35) 0%, transparent 65%);
+      transition: opacity 1.2s; pointer-events: none;
     }
     #flame {
-      position: absolute;
-      top: 2rem;
-      width: 40px;
-      height: 120px;
+      position: absolute; top: 2rem; width: 40px; height: 120px;
       background: linear-gradient(to bottom, rgba(255, 200, 100, 0.8), rgba(255, 100, 0, 0.8));
-      border-radius: 50% 50% 0 0;
-      filter: blur(5px);
-      box-shadow: 0 0 20px rgba(255, 150, 50, 0.5);
+      border-radius: 50% 50% 0 0; filter: blur(5px); box-shadow: 0 0 20px rgba(255, 150, 50, 0.5);
     }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      color: var(--muted);
-      margin-top: auto;
-    }
+    footer { text-align: center; padding: 2rem; color: var(--muted); margin-top: auto; }
   </style>
 </head>
 <body>
   <section id="story">
     <h1 class="fade">Наша маленькая история</h1>
-    
     <div class="fade" style="margin: 2.5rem 0; width: 100%; max-width: 600px;">
       <img src="/img/d3f232ee-8148-4524-bb9a-e8f426003748.jpg" alt="Момент 1" style="width:100%; height:auto; display:block; border-radius:8px;">
       <p class="soft">[дата], Как всё начиналось…</p>
     </div>
-    
     <div class="fade" style="margin: 2.5rem 0; width: 100%; max-width: 600px;">
       <img src="/img/fce7b391-835a-40ef-bc79-6ce8a41fbd30.jpg" alt="Момент 3" style="width:100%; height:auto; display:block; border-radius:8px;">
       <p class="soft">Момент, когда стало по-настоящему…</p>
     </div>
   </section>
-
   <section id="candle">
     <h2 class="fade">Загадай желание</h2>
     <div class="fade" id="candleWrap">
@@ -84,11 +60,9 @@
       <div id="flame"></div>
     </div>
   </section>
-
   <footer>
     <p>С любовью, [Твоё имя]</p>
   </footer>
-
   <script src="script.js"></script>
 </body>
 </html>

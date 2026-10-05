@@ -3,125 +3,94 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Для тебя ❤</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;600&display=swap" rel="stylesheet">
+  <title>С Днём Рождения!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    :root {
+    root {
       --bg: #14121c;
-      --amber: #ffb347;
-      --cream: #f5ede2;
-      --muted: #9a92a8;
+      --amber: #ff3a47;
+      --cream: #f5d0d3;
+      --muted: #4b3d4a;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       background: var(--bg);
       color: var(--cream);
-      font-family: 'Manrope', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-weight: 300;
       line-height: 1.8;
       overflow-x: hidden;
     }
     h1, h2, .serif { font-family: 'Cormorant Garamond', serif; }
-    section {
-      min-height: 100vh;
-      display: flex; flex-direction: column;
-      justify-content: center; align-items: center;
-      padding: 4rem 1.5rem;
-      max-width: 700px; margin: 0 auto;
-      text-align: center;
-    }
-    h2 { font-size: 2.2rem; color: var(--amber); margin-bottom: 1.5rem; }
-    p { font-size: 1.1rem; color: var(--cream); margin-bottom: 1rem; }
-    .soft { color: var(--muted); font-size: 0.95rem; }
+    section { min-height: 100vh; }
     .fade { opacity: 0; transform: translateY(30px); transition: opacity 1s ease, transform 1s ease; }
     .fade.visible { opacity: 1; transform: translateY(0); }
+    .soft { color: var(--muted); font-size: 0.9rem; }
     .btn {
-      display: inline-block; margin-top: 2rem;
-      padding: 0.9rem 2.2rem;
-      border: 1px solid var(--amber); border-radius: 40px;
-      color: var(--amber); text-decoration: none;
-      font-weight: 600; letter-spacing: 0.05em;
-      transition: background 0.3s, color 0.3s;
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.8rem 2.2rem;
+      border: 1px solid var(--amber);
+      color: var(--amber);
+      text-decoration: none;
+      border-radius: 40px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
     }
     .btn:hover { background: var(--amber); color: var(--bg); }
-    img.photo {
-      width: 100%; max-width: 480px;
-      border-radius: 14px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-      margin: 1.5rem 0;
+    #candleWrap {
+      position: relative;
+      width: 80px;
+      height: 260px;
+      margin: 2rem auto;
     }
-    .stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
-    section { position: relative; z-index: 1; }
+    #glow {
+      position: absolute;
+      bottom: 215px;
+      left: -60px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,179,71,0.35) 0%, transparent 65%);
+      transition: opacity 1.2s;
+    }
+    #flame {
+      position: absolute;
+      top: 2rem;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+    }
   </style>
 </head>
 <body>
-  <canvas class="stars" id="stars"></canvas>
+  <section id="story">
+    <h1 class="fade">Наша маленькая история</h1>
+    <div class="fade" style="margin: 2.5rem 0;">
+      <img src="img/1.jpg" alt="Момент 1" style="width:100%; max-width:600px; display:block; margin:0 auto;">
+      <p class="soft">[дата], Как всё начиналось…</p>
+    </div>
+    <div class="fade" style="margin: 2.5rem 0;">
+      <img src="img/3.jpg" alt="Момент 3" style="width:100%; max-width:600px; display:block; margin:0 auto;">
+      <p class="soft">Момент, когда стало по-настоящему…</p>
+    </div>
+  </section>
 
-  <section id="intro">
-    <p class="soft fade">привет. это письмо — только для тебя</p>
-    <h1 class="fade" style="font-size:3rem; color:var(--amber); margin:1rem 0;">Прокрути вниз</h1>
-    <p class="fade soft">медленно. как настоящее письмо 🤍</p>
-  </section>
-
-  <section id="letter">
-    <div id="envelope" class="fade" style="font-size:4rem; cursor:pointer;">✉️</div>
-    <p class="soft fade" id="openHint">нажми на конверт</p>
-    <div id="letterBody" style="display:none; max-width:520px; text-align:left;">
-      <h2 class="serif" style="font-style:italic;">Привет, ты.</h2>
-      <p>Я долго думала, как поздравить тебя так, чтобы ты это запомнил. И решила — не месседжем. Не открыткой. А так.</p>
-      <p>[ПЕРВОЕ ЧЕСТНОЕ ПРЕДЛОЖЕНИЕ]</p>
-      <p>[ВТОРОЕ — КОНКРЕТНЫЙ МОМЕНТ]</p>
-      <p>С днём рождения. Ты — самое тёплое, что со мной случилось.</p>
-      <p class="soft" style="text-align:right;">— [ТВОЁ ИМЯ]</p>
-    </div>
-  </section>
-  <script>
-    document.getElementById('envelope').addEventListener('click', () => {
-      document.getElementById('envelope').style.display = 'none';
-      document.getElementById('openHint').style.display = 'none';
-      const body = document.getElementById('letterBody');
-      body.style.display = 'block';
-      body.style.opacity = 0; body.style.transition = 'opacity 1.5s';
-      requestAnimationFrame(() => body.style.opacity = 1);
-    });
-  </script>
-</body>
-</html>
-  <section id="story" style="display:block; min-height:auto; padding:5rem 1.5rem;">
-    <h2 class="fade">Наша маленькая история</h2>
-    <div class="fade" style="margin:2.5rem 0;">
-      <img class="photo" src="img/1.jpg" alt="Момент 1">
-      <p class="soft">[дата]. Как всё началось.</p>
-    </div><p class="soft">Первое путешествие / первый смешной случай.</p>
-    </div>
-    <div class="fade" style="margin:2.5rem 0;">
-      <img class="photo" src="img/3.jpg" alt="Момент 3">
-      <p class="soft">Момент, когда стало по-настоящему.</p>
-    </div>
-  </section>
-</section>
-<section id="candle">
-  <h2 class="fade">Загадай желание</h2>
-  <div class="fade" id="candleWrap" style="position:relative; width:80px; height:260px; margin:2rem auto;">
-    <div id="glow" style="position:absolute; bottom:215px; left:-60px; width:200px; height:200px; border-radius:50%; background: radial-gradient(circle, rgba(255,179,71,0.35) 0%, transparent 65%); transition: opacity 1.2s;"></div>
-    <div id="flame" style="position:absolute; top:2rem;"></div>
-  </div>
-</section>
-<footer>
-  <p>С любовью, [Твоё имя]</p>
-</footer>
-</body>
-</html>
   <section id="candle">
     <h2 class="fade">Загадай желание</h2>
-    <div class="fade" id="candleWrap" style="position:relative; width:80px; height:260px; margin:2rem auto;">
-      <div id="glow" style="
-        position:absolute; bottom:215px; left:-60px;
-        width:200px; height:200px; border-radius:50%;
-        background: radial-gradient(circle, rgba(255,179,71,0.35) 0%, transparent 65%);
-        transition: opacity 1.2s;"></div>
-      <div id="flame" style="
-        position:absolute;
-    <div class="fade" style="margin:2.5rem 0;">
-      <img class="photo" src="img/2.jpg" alt="Момент 2">
+    <div class="fade" id="candleWrap">
+      <div id="glow"></div>
+      <div id="flame"></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>С любовью, [Твоё имя]</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
